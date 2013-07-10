@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>local-marker</title>
+        <meta http-equiv='content-type' content='text/html; charset=utf-8' />
+        <meta name='viewport' content='initial-scale=1.0 maximum-scale=1.0'>
+        <style>
+        img, canvas { border:1px solid #000; margin:10px; }
+        </style>
+    </head>
+    <body>
+        <img src='http://api.tiles.mapbox.com/v3/marker/pin-m+48a.png' />
+        <canvas width=30 height=70 id='marker'></canvas>
+        <script src='local-marker.js'></script>
+        <script>
+localMaki(function(maki) {
+    window.setInterval(function() {
+        symbol = [
+            Math.floor(Math.random() * 6) * 155,
+            Math.floor(Math.random() * 10) * 48
+        ];
+        function dig() { return Math.floor(Math.random() * 15).toString(15); }
+        localMaker(document.getElementById('marker'), {
+            maki: maki,
+            inner: '#' + [dig(), dig(), dig()].join(''),
+            outer: '#' + [dig(), dig(), dig()].join(''),
+            symbol: symbol
+        });
+    }, 100);
+});
+        </script>
+    </body>
+</html>
